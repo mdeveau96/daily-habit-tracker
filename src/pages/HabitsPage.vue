@@ -1,0 +1,3 @@
+<template>
+  Habits Page
+</template>

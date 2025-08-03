@@ -1,0 +1,52 @@
+/* Basic CSS for Vue project layout */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f7f7f7;
+  color: #222;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header, footer {
+  background: #2c3e50;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+main {
+  flex: 1;
+  display: flex;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  padding: 1rem;
+}
+
+main > div:first-child {
+  min-width: 200px;
+  margin-right: 2rem;
+}
+
+main > div:last-child {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+  main > div:first-child {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    min-width: unset;
+  }
+}

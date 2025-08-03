@@ -1,0 +1,30 @@
+:root {
+  --background-color: #f9fafb /* Gray-100 */;
+  --text-color: #111827 /* Gray-900 */;
+  --text-color-muted: #6b7280 /* Gray-500 */;
+  --primary-color: #3b82f6 /* Blue-500 */;
+  --primary-hover-color: #2563eb /* Blue-600 */;
+  --accent-color: #10b981 /* Emerald-500 */;
+  --border-color: #E5E7EB  /* Gray-200 */;
+  --card-background: #FFFFFF /* White */;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #111827 /* Gray-900 */;
+    --text-color: #F9FAFB /* Gray-50 */;
+    --text-color-muted: #9ca3af /* Gray-400 */;
+    --primary-color: #3B82F6 /* Blue-500 */;
+    --primary-hover-color: #60A5FA  /* Blue-400 */;
+    --accent-color: #34D399 /* Emerald-400 */;
+    --border-color: #1F2937 /* Gray-800 */;
+    --card-background: #1E293B /* Slate-800 */;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--background-color);
+  color: var(--text-color);
+}

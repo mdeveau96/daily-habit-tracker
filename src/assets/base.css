@@ -1,9 +1,8 @@
 /* Basic CSS for Vue project layout */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: #f7f7f7;
-  color: #222;
+.header{
+  background-color: var(--background-color);
+  color: var(--text-color);
+  
 }
 
 .layout {
@@ -12,16 +11,11 @@ body {
   min-height: 100vh;
 }
 
-header, footer {
-  background: #2c3e50;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
-}
-
 main {
   flex: 1;
   display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .content {

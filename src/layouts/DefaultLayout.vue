@@ -1,19 +1,27 @@
 <script setup lang="ts">
 import AppHeader from '@/components/AppHeader.vue'
-import SideBar from '@/components/SideBar.vue'
+// import SideBar from '@/components/SideBar.vue'
 </script>
 
 <template>
   <div class="layout">
     <AppHeader />
     <main>
-      <SideBar />
-      <div class="content">
-        <router-view />
-      </div>
+      <router-view />
     </main>
-    <footer>
-      <p>&copy; 2025 Daily Habit Tracker</p>
-    </footer>
   </div>
 </template>
+
+<style scoped>
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+</style>

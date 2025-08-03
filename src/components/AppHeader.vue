@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <h1><a href="/">Daily Habit Tracker</a></h1>
+    <a class="title" href="/"><h1>Daily Habit Tracker</h1></a>
     <nav>
       <ul>
         <li><router-link to="/login">Login</router-link></li>
@@ -12,19 +12,11 @@
 
 <style scoped>
 .header {
-  background: #2c3e50;
-  padding: 10px;
-  color: white;
+  padding: 1rem;
 }
-.header h1 {
-  margin: 0;
-  display: inline-block;
-  font-size: 24px;
+.title {
   text-decoration: none;
-}
-.header h1 a {
-  color: white;
-  text-decoration: none;
+  font-weight: bold;
 }
 .header nav {
   float: right;
@@ -40,13 +32,9 @@
   margin-left: 20px;
 }
 .header nav a {
-  color: white;
   text-decoration: none;
 }
 .header nav a:hover {
   text-decoration: underline;
-}
-.header nav a:active {
-  color: #0056b3;
 }
 </style>

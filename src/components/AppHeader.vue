@@ -1,40 +1,12 @@
 <template>
-  <div class="header">
-    <a class="title" href="/"><h1>Daily Habit Tracker</h1></a>
-    <nav>
-      <ul>
-        <li><router-link to="/login">Login</router-link></li>
-        <li><router-link to="/signup">Sign Up</router-link></li>
-      </ul>
-    </nav>
-  </div>
+  <v-toolbar color="header_bg">
+    <v-toolbar-title text="Daily Habit Tracker"></v-toolbar-title>
+
+    <template v-slot:append>
+      <v-btn variant="flat" color="primary" text="Login" href="/login" />
+      <v-btn text="Sign Up" href="/signup" />
+    </template>
+  </v-toolbar>
 </template>
 
-<style scoped>
-.header {
-  padding: 1rem;
-}
-.title {
-  text-decoration: none;
-  font-weight: bold;
-}
-.header nav {
-  float: right;
-  margin: auto;
-}
-.header nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-}
-.header nav li {
-  margin-left: 20px;
-}
-.header nav a {
-  text-decoration: none;
-}
-.header nav a:hover {
-  text-decoration: underline;
-}
-</style>
+<style scoped></style>

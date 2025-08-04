@@ -1,36 +1,7 @@
-/* Basic CSS for Vue project layout */
-.header{
-  background-color: var(--background-color);
-  color: var(--text-color);
-  
-}
-
-.layout {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 main {
-  flex: 1;
-  display: flex;
-  max-width: 1200px;
+  max-width: 960px; /* or 1024px */
   margin: 0 auto;
-}
-
-.content {
-  display: flex;
-  flex: 1;
-  padding: 1rem;
-}
-
-main > div:first-child {
-  min-width: 200px;
-  margin-right: 2rem;
-}
-
-main > div:last-child {
-  flex: 1;
+  width: 100%;
 }
 
 @media (max-width: 768px) {

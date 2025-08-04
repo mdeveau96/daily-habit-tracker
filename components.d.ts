@@ -9,8 +9,14 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppHeader: typeof import('./src/components/AppHeader.vue')['default']
+    HabitCard: typeof import('./src/components/HabitCard.vue')['default']
+    HabitForm: typeof import('./src/components/HabitForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SideBar: typeof import('./src/components/SideBar.vue')['default']
+    TabsComponent: typeof import('./src/components/TabsComponent.vue')['default']
+    TabSelector: typeof import('./src/components/TabSelector.vue')['default']
+    UBadge: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/Badge.vue')['default']
+    UTabs: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/Tabs.vue')['default']
   }
 }

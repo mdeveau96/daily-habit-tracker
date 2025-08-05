@@ -8,5 +8,3 @@
     </template>
   </v-toolbar>
 </template>
-
-<style scoped></style>

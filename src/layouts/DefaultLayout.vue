@@ -14,4 +14,7 @@ import TabSelector from '@/components/TabSelector.vue'
 </template>
 
 <style scoped>
+main {
+  padding: 20px;
+}
 </style>

@@ -6,7 +6,6 @@
   const goalType = ref('Daily')
   const selectedRange = ref<Date[]>([])
 
-
 </script>
 
 <template>

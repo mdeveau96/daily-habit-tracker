@@ -1,27 +1,68 @@
 <script setup lang="ts">
   import HabitCard from '@/components/HabitCard.vue';
   import HabitForm from '@/components/HabitForm.vue';
-  import { ref } from 'vue';
+  import { onMounted, ref } from 'vue';
   import { db } from '@/firebase'
-  import { collection, getDocs } from 'firebase/firestore'
+  import { collection, getDocs, addDoc } from 'firebase/firestore'
 
-  const addNewHabit = ref(false);
+  const addNewHabit = ref(false)
 
   interface Habit {
-    title: string;
-    type: string;
+    title: string
+    type: string
+    selectedRange?: Date[]
   }
 
+  const isToday = (date: Date) => {
+    const today = new Date()
+    return (
+      date.getFullYear() === today.getFullYear() &&
+      date.getMonth() === today.getMonth() &&
+      date.getDate() === today.getDate()
+    )
+  }
+
+  const hasToday = (selectedRange: Date[]) =>
+    selectedRange.some(date => isToday(date))
+
+  const isTodayInRange = (selectedRange: Date[]) => {
+    if (selectedRange.length < 2) return false
+    const today = new Date()
+    const start = selectedRange[0]
+    const end = selectedRange[1]
+    return today >= start && today <= end
+  }
+
+  const todayHabits = ref<Habit[]>([])
+  const laterHabits = ref<Habit[]>([])
+
   const habitsCol = collection(db, 'habits')
-  const habitsSnapshot = await getDocs(habitsCol)
-  const habits: Habit[] = habitsSnapshot.docs.map(doc => doc.data() as Habit);
+  const fetchHabits = async () => {
+    const habitsSnapshot = await getDocs(habitsCol)
+    todayHabits.value = habitsSnapshot.docs
+      .map(doc => doc.data() as Habit)
+      .filter(habit =>
+        habit.type === 'Daily' ||
+        (habit.selectedRange && hasToday(habit.selectedRange)) ||
+        (habit.selectedRange && isTodayInRange(habit.selectedRange))
+      )
+    laterHabits.value = habitsSnapshot.docs
+      .map(doc => doc.data() as Habit)
+      .filter(habit =>
+        habit.type !== 'Daily' &&
+        (!habit.selectedRange || !hasToday(habit.selectedRange)) &&
+        (!habit.selectedRange || !isTodayInRange(habit.selectedRange))
+      )
+  }
+
+  onMounted(fetchHabits)
 
   const addHabit = async (habit: Habit) => {
-    console.log('Adding habit:', habit);
-    // await addDoc(habitsCol, habit);
-    addNewHabit.value = false; // Close the form after adding
+    console.log('Adding habit:', habit)
+    await addDoc(habitsCol, habit)
+    addNewHabit.value = false
+    await fetchHabits()
   };
-
 
 </script>
 
@@ -34,13 +75,13 @@
       <HabitForm v-if="addNewHabit" @cancel="addNewHabit = false" @submit="addHabit" />
     </v-dialog>
     <v-row>
-      <v-col cols="12" sm="6" md="4" v-for="(habit, idx) in habits" :key="idx">
+      <v-col cols="12" sm="6" md="4" v-for="(habit, idx) in todayHabits" :key="idx">
         <HabitCard :habit="habit" />
       </v-col>
     </v-row>
     <p>Upcoming Habits</p>
     <v-row>
-      <v-col cols="12" sm="6" md="4" v-for="(habit, idx) in habits" :key="'upcoming-' + idx">
+      <v-col cols="12" sm="6" md="4" v-for="(habit, idx) in laterHabits" :key="'upcoming-' + idx">
         <HabitCard :habit="habit" />
       </v-col>
     </v-row>
